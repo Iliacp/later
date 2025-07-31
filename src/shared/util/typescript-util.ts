@@ -50,9 +50,15 @@ export function combineObjects(target: object = {}, ...sources: object[]): objec
     }, target);
 }
 
-export function capitalize(string: string | undefined) {
-  return `${string?.[0].toLocaleUpperCase()}${string?.slice(1)}`;
+export function capitalize<T extends string>(string: T | undefined): Capitalize<T> | '' {
+  return `${string?.[0].toLocaleUpperCase()}${string?.slice(1)}` as Capitalize<T> | '';
 }
+export function kebabCase<T extends string>(str: T): KebabCase<T> {
+   return str.toLowerCase().replace(/_/g, '-') as KebabCase<T>;
+}
+export type KebabCase<T extends string> = T extends `${infer First}_${infer Rest}`
+   ? `${Lowercase<First>}-${KebabCase<Rest>}`
+   : Lowercase<T>;
 
 export const isNotNull = <T>(value: T | null): value is T => value !== null;
 export const isNotUndefined = <T>(value: T | undefined): value is T => value !== undefined;

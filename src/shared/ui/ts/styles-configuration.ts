@@ -1,5 +1,5 @@
 import { ExcludeType } from '../../util/typescript-util';
-import { getTypographyClass, getTextColorClass, LaterUITextColor, LaterUITypography } from './styles-definition';
+import { getTypographyClass, LaterUIColor, LaterUITypography, getColor } from './styles-definition';
 
 export type CSSStyles = Partial<ExcludeType<CSSStyleDeclaration, Function>>;
 
@@ -17,30 +17,17 @@ export type StyleConfigurator = () => StyleConfig;
 export type MaybeStyleConfigurators = (StyleConfigurator | null)[];
 
 export class LaterUIConfigurators {
-    static defaultTitle: StyleConfigurator = () => ({
-        classes: [getTypographyClass('bold')],
-        styles: {
-            margin: '0px'
-        }
-    });
-    
-    static defaultContent: StyleConfigurator = () => ({
-        classes: [getTypographyClass('body-1')],
-        styles: {
-            wordBreak: 'break-word',
-            margin: '0px'
-        }
-    });
-    
-    static warningColor: StyleConfigurator = () => ({
-        classes: [getTextColorClass('red')]
-    });
+    /** Not strictly necessary but good for readability in templates */
+    static if = (condition: boolean) => 
+        condition ?
+        LaterUIConfigurators :
+        null;
 
-    static warningColorIf = (condition: boolean) =>
-        condition ? this.warningColor : null;
+    static backgroundColor = (color: LaterUIColor): StyleConfigurator =>
+        () => ({styles: {backgroundColor: `var(${getColor(color)})`}});
 
-    static textColor = (color: LaterUITextColor): StyleConfigurator =>
-        () => ({classes: [getTextColorClass(color)]});
+    static textColor = (color: LaterUIColor): StyleConfigurator =>
+        () => ({styles: {color: `var(${getColor(color)})`}});
 
     static typography = (...typo: LaterUITypography[]): StyleConfigurator =>
         () => ({classes: typo.map(t => getTypographyClass(t))});

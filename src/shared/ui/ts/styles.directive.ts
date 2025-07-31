@@ -3,13 +3,13 @@ import { isNotNull, combineObjects } from '../../util/typescript-util';
 import { MaybeStyleConfigurators } from './styles-configuration';
 
 @Directive({
-    selector: 'laterStyle',
+    selector: '[laterStyle]',
     host: {
         '[style]': 'styles()',
         '[class]': 'classList()'
     }
 })
-export class StyleDirective {
+export class LaterStyleDirective {
     configurators = input<MaybeStyleConfigurators>([], {alias: 'laterStyle'});
 
     protected classList = computed(() => this.configurators().filter(isNotNull).flatMap(fn => fn()?.classes ?? []));

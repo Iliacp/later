@@ -1,0 +1,38 @@
+.later-ui {
+    &-primary {
+        color: var(--mat-sys-primary);
+    }
+    &-on-primary {
+        color: var(--mat-sys-on-primary);
+    }
+    &-secondary {
+        color: var(--mat-sys-secondary);
+    }
+    &-on-secondary {
+        color: var(--mat-sys-on-secondary);
+    }
+    &-tertiary {
+        color: var(--mat-sys-tertiary);
+    }
+    &-on-tertiary {
+        color: var(--mat-sys-on-tertiary);
+    }
+    &-error {
+        color: var(--mat-sys-error);
+    }
+    &-on-error {
+        color: var(--mat-sys-on-error);
+    }
+    &-surface {
+        color: var(--mat-sys-surface);
+    }
+    &-on-surface {
+        color: var(--mat-sys-on-surface);
+    }
+    &-outline {
+        color: var(--mat-sys-outline);
+    }
+    &-outline-variant {
+        color: var(--mat-sys-outline-variant);
+    }
+}

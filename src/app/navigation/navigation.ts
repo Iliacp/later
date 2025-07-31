@@ -8,7 +8,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { LaterUIConfigurators } from '../../shared/ui/ts/styles-configuration';
+import { LaterStyleDirective } from '../../shared/ui/ts/styles.directive';
 
 @Component({
   selector: 'later-navigation',
@@ -19,7 +21,9 @@ import { RouterOutlet } from '@angular/router';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    RouterOutlet
+    RouterOutlet,
+    RouterLink,
+    LaterStyleDirective
   ],
   template: `
     <mat-sidenav-container class="sidenav-container">
@@ -27,11 +31,11 @@ import { RouterOutlet } from '@angular/router';
           [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>Menu</mat-toolbar>
+        <mat-toolbar [laterStyle]="[CONFIGURATORS.backgroundColor('primary'), CONFIGURATORS.textColor('on-primary')]">Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item href="#">Link 1</a>
-          <a mat-list-item href="#">Link 2</a>
-          <a mat-list-item href="#">Link 3</a>
+          <a mat-list-item routerLink="home">Home</a>
+          <a mat-list-item routerLink="todos">To do's</a>
+          <a mat-list-item routerLink="rewards">Rewards</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -70,6 +74,8 @@ import { RouterOutlet } from '@angular/router';
   `,
 })
 export class Navigation {
+  protected readonly CONFIGURATORS = LaterUIConfigurators;
+
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

@@ -1,0 +1,63 @@
+.later-ui {
+    &-body {
+        &-small {
+            font: var(--mat-sys-body-small);
+        }
+        &-medium {
+            font: var(--mat-sys-body-medium);
+        }
+        &-large {
+            font: var(--mat-sys-body-large);
+        }
+    }
+    &-display {
+        &-small {
+            font: var(--mat-sys-display-small);
+        }
+        &-medium {
+            font: var(--mat-sys-display-medium);
+        }
+        &-large {
+            font: var(--mat-sys-display-large);
+        }
+    }
+    &-headline {
+        &-small {
+            font: var(--mat-sys-headline-small);
+        }
+        &-medium {
+            font: var(--mat-sys-headline-medium);
+        }
+        &-large {
+            font: var(--mat-sys-headline-large);
+        }
+    }
+    &-label {
+        &-small {
+            font: var(--mat-sys-label-small);
+        }
+        &-medium {
+            font: var(--mat-sys-label-medium);
+        }
+        &-large {
+            font: var(--mat-sys-label-large);
+        }
+    }
+    &-title {
+        &-small {
+            font: var(--mat-sys-title-small);
+        }
+        &-medium {
+            font: var(--mat-sys-title-medium);
+        }
+        &-large {
+            font: var(--mat-sys-title-large);
+        }
+    }
+    &-bold {
+        font-weight: bold;
+    }
+    &-not-bold {
+        font-weight: normal;
+    }
+}
